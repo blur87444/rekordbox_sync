@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+*.xml
+*.m3u8
+.rekordbox_sync.json
