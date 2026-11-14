@@ -1,42 +1,53 @@
+🇬🇧 English | [🇩🇪 Deutsch](README.de.md)
+
 # rekordbox-sync
 
-Kopiert Tracks aus rekordbox-Playlists in einen Ordner, z. B. um sie aufs Handy zu bringen
-(iTunes-Dateifreigabe, USB, Syncthing ...).
+> [!WARNING]
+> **This project is 100% AI-generated.** All code and documentation were written by an AI
+> (Claude by Anthropic). The script was only tested with sample files, not with a real
+> rekordbox library. Use it at your own risk and try a dry run (`-n`) first.
+> Your original files are never modified, only copies are written.
 
-- liest Playlists aus einem rekordbox-XML-Export oder einer M3U8-Datei
-- benennt die Kopien sauber als `Artist - Titel.ext`
-- bereinigt Tags (Titel/Artist/Album) in den **Kopien**: Katalognummern wie `[SUBB9605]`,
-  `(FREE DOWNLOAD)` usw. fliegen raus, WAVs bekommen die Infos aus rekordbox
-- wandelt optional WAV/AIFF/FLAC in MP3 um (`--convert mp3`, braucht ffmpeg)
-- legt pro Playlist eine `.m3u8` mit relativen Pfaden an
-- inkrementell: spätere Läufe kopieren nur neue/geänderte Tracks
+Copies the tracks of rekordbox playlists into a folder, e.g. to get them onto your phone
+(iTunes file sharing, USB, Syncthing ...).
 
-Die Originaldateien werden nie verändert oder verschoben.
+- reads playlists from a rekordbox XML export or an M3U8 file
+- names the copies cleanly as `Artist - Title.ext`
+- cleans up the tags (title/artist/album) of the **copies**: catalogue numbers such as
+  `[SUBB9605]`, `(FREE DOWNLOAD)` etc. are removed, WAV files get the metadata from rekordbox
+- optionally converts WAV/AIFF/FLAC to MP3 (`--convert mp3`, requires ffmpeg)
+- creates an `.m3u8` per playlist with relative paths
+- incremental: later runs only copy new or changed tracks
+
+Your original files are never modified or moved.
+
+> [!NOTE]
+> The command-line output and help texts of the script are currently in German.
 
 ## Installation
 
 ```powershell
 pip install -r requirements.txt
-winget install ffmpeg        # nur für --convert
+winget install ffmpeg        # only needed for --convert
 ```
 
-## Benutzung
+## Usage
 
-In rekordbox: *Datei → Bibliothek → Sammlung im XML-Format exportieren*.
+In rekordbox: *File → Library → Export Collection in xml format*.
 
 ```powershell
 python rekordbox_sync.py lib.xml --list
-python rekordbox_sync.py lib.xml -p "100% Jungle" -t "C:\Users\me\Music\Handy" --mirror --convert mp3
+python rekordbox_sync.py lib.xml -p "100% Jungle" -t "C:\Users\me\Music\Phone" --mirror --convert mp3
 ```
 
-| Option | Bedeutung |
+| Option | Meaning |
 |---|---|
-| `-p NAME` | Playlist (mehrfach möglich, `Ordner/Playlist` für verschachtelte) |
-| `--all` | alle Playlists |
-| `--list` | Playlists auflisten |
-| `--mirror` | Dateien im Ziel löschen, die nicht mehr in der Playlist sind |
-| `--convert mp3` | WAV/AIFF/FLAC → MP3 (`--bitrate`, Standard 320k) |
-| `--numbered` | Dateien durchnummerieren (001, 002 ...) |
-| `--no-tags` | Tags nicht anfassen |
-| `--raw-names` | Originalnamen und -tags behalten |
-| `-n` | Testlauf, ändert nichts |
+| `-p NAME` | playlist (can be repeated, use `Folder/Playlist` for nested ones) |
+| `--all` | all playlists |
+| `--list` | list playlists |
+| `--mirror` | delete files in the target that are no longer in the playlist |
+| `--convert mp3` | WAV/AIFF/FLAC → MP3 (`--bitrate`, default 320k) |
+| `--numbered` | number the files (001, 002 ...) to keep the order |
+| `--no-tags` | leave tags untouched |
+| `--raw-names` | keep original file names and tags |
+| `-n` | dry run, changes nothing |

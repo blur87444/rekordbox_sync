@@ -3,6 +3,9 @@
 rekordbox_sync.py – kopiert die Tracks von rekordbox-Playlists in einen Ordner,
 z. B. um sie aufs Handy zu bringen (iTunes-Dateifreigabe, USB, Syncthing ...).
 
+Hinweis: Dieses Skript ist zu 100 % KI-generiert (Claude von Anthropic).
+Benutzung auf eigene Gefahr – im Zweifel zuerst mit -n (Testlauf) starten.
+
 Was das Skript macht:
   * liest Playlists aus einem rekordbox-XML-Export (oder einer M3U8-Datei)
   * kopiert die Tracks pro Playlist in einen eigenen Unterordner
