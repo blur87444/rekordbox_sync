@@ -49,3 +49,19 @@ python rekordbox_sync.py lib.xml -p "100% Jungle" -t "C:\Users\me\Music\Handy" -
 | `--no-tags` | Tags nicht anfassen |
 | `--raw-names` | Originalnamen und -tags behalten |
 | `-n` | Testlauf, ändert nichts |
+
+## Roadmap / Ideen
+
+- **Tracks direkt in die iPhone-App [My Own Music](https://apps.apple.com/app/id6755663081) übertragen**
+  Bisher müssen die kopierten Tracks von Hand in die App gezogen werden
+  (iTunes → Gerät → Dateifreigabe → My Own Music). Idee: Eine neue Option wie `--push-ios`
+  überträgt den synchronisierten Ordner per USB direkt in die Dokumente der App – ganz ohne
+  Klicken in iTunes. Mit `--mirror` würden dann auch Tracks vom Handy gelöscht, die aus der
+  Playlist entfernt wurden.
+  *Möglicher Ansatz (noch nicht getestet):* [`pymobiledevice3`](https://github.com/doronz88/pymobiledevice3),
+  das auf den Dokumente-Ordner von Apps mit iTunes-Dateifreigabe zugreifen kann
+  (house_arrest/AFC-Dienst). Unter Windows wird dafür der Apple-Gerätetreiber gebraucht, der
+  mit iTunes oder der App „Apple-Geräte“ installiert wird.
+- Englische Ausgaben im Skript bzw. automatische Umschaltung je nach Systemsprache.
+
+Ideen, Feedback und Pull Requests sind willkommen!

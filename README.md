@@ -51,3 +51,19 @@ python rekordbox_sync.py lib.xml -p "100% Jungle" -t "C:\Users\me\Music\Phone" -
 | `--no-tags` | leave tags untouched |
 | `--raw-names` | keep original file names and tags |
 | `-n` | dry run, changes nothing |
+
+## Roadmap / ideas
+
+- **Push tracks directly into the iPhone app [My Own Music](https://apps.apple.com/app/id6755663081)**
+  Right now the copied tracks have to be dragged into the app by hand
+  (iTunes → device → File Sharing → My Own Music). The idea: a new option such as
+  `--push-ios` sends the synced folder straight into the app's documents via USB, with no
+  clicking in iTunes. `--mirror` would then also remove tracks from the phone that were
+  removed from the playlist.
+  *Possible approach (not tested yet):* [`pymobiledevice3`](https://github.com/doronz88/pymobiledevice3),
+  which can access the documents folder of apps that support iTunes file sharing
+  (house_arrest/AFC service). On Windows this needs Apple's device driver, which comes with
+  iTunes or the "Apple Devices" app.
+- English command-line output, or switch automatically based on the system language.
+
+Ideas, feedback and pull requests are welcome!
